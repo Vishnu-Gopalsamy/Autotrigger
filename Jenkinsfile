@@ -15,11 +15,19 @@ pipeline {
 
         stage('Run Container Test') {
             steps {
-                sh 'docker run -d --name test-container $IMAGE_NAME'
-                sh 'sleep 5'
-                sh 'docker stop test-container'
-                sh 'docker rm test-container'
+                // Remove old container if exists (prevents errors)
+                sh 'docker rm -f test-container || true'
+
+                // Run container in foreground to see output
+                sh 'docker run --name test-container $IMAGE_NAME'
             }
+        }
+    }
+
+    post {
+        always {
+            // Cleanup after execution
+            sh 'docker rm -f test-container || true'
         }
     }
 }
