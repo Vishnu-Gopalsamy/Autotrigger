@@ -2,7 +2,11 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "vishnu/autotrigger"
+        IMAGE_NAME = "vishnugopalsamy/autotrigger"
+    }
+
+    triggers {
+        githubPush()
     }
 
     stages {
@@ -15,18 +19,21 @@ pipeline {
 
         stage('Run Container Test') {
             steps {
-                // Remove old container if exists (prevents errors)
                 sh 'docker rm -f test-container || true'
-
-                // Run container in foreground to see output
                 sh 'docker run --name test-container $IMAGE_NAME'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                sh 'docker login -u vishnugopalsamy -p YOUR_PASSWORD'
+                sh 'docker push $IMAGE_NAME'
             }
         }
     }
 
     post {
         always {
-            // Cleanup after execution
             sh 'docker rm -f test-container || true'
         }
     }
