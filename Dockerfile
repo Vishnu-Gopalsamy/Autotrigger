@@ -1,11 +1,11 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 WORKDIR /app
 
 COPY . .
 
-RUN pip install streamlit
+RUN pip install Flask
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "main.py", "--server.address=0.0.0.0"]
+CMD ["python", "main.py"]
