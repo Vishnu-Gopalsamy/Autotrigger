@@ -25,8 +25,9 @@ pipeline {
                 // Remove old container if it exists
                 sh 'docker rm -f test-container || true'
 
-                // Run container and verify application output
-                sh 'docker run --name test-container $IMAGE_NAME'
+                sh 'docker run -d --name test-container -p 8501:8501 $IMAGE_NAME'
+                sh 'sleep 10'
+                sh 'docker logs test-container'
             }
         }
 
