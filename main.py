@@ -8,12 +8,7 @@ st.subheader("Dockerized Application using Jenkins + GitHub")
 st.write("### Project Title")
 st.write("Automated CI Pipeline for Dockerized Applications using Jenkins and GitHub")
 
-st.write("### Tools Used")
-st.write("- GitHub")
-st.write("- Jenkins")
-st.write("- Docker")
-st.write("- Docker Hub")
-st.write("- Streamlit")
+
 
 st.write("### Pipeline Status")
 st.success("GitHub Webhook Triggered Successfully")
