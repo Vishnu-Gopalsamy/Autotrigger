@@ -10,59 +10,63 @@ def home():
         <title>CI Pipeline Dashboard</title>
         <style>
             body {
-                background-color: #f4f7fa;
-                font-family: Arial, sans-serif;
-                margin: 40px;
-                color: #333;
+                background-color: #0d1117;
+                color: #c9d1d9;
+                font-family: Consolas, monospace;
+                margin: 30px;
             }
 
             h1 {
-                color: #0d6efd;
+                color: #58a6ff;
+                text-align: center;
             }
 
             h2 {
-                color: #198754;
+                color: #3fb950;
+                text-align: center;
             }
 
             h3 {
-                color: #dc3545;
-            }
-
-            p {
-                font-size: 16px;
+                color: #f85149;
             }
 
             .box {
-                background-color: white;
-                padding: 20px;
+                background-color: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 10px;
-                box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+                padding: 20px;
                 margin-bottom: 20px;
+                box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
             }
 
             .success {
-                color: green;
+                color: #3fb950;
                 font-weight: bold;
             }
 
-            pre {
-                background-color: #eeeeee;
+            .code-box {
+                background-color: #010409;
+                border: 1px solid #30363d;
                 padding: 15px;
                 border-radius: 8px;
+                color: #79c0ff;
+                white-space: pre-wrap;
                 font-size: 15px;
             }
 
+            p {
+                line-height: 1.6;
+            }
+
             hr {
-                border: 1px solid #ccc;
+                border: 1px solid #30363d;
             }
         </style>
     </head>
     <body>
 
-        <center>
-            <h1>🚀 Continuous Integration Dashboard</h1>
-            <h2>Dockerized Application using Jenkins + GitHub</h2>
-        </center>
+        <h1>🚀 Continuous Integration Dashboard</h1>
+        <h2>Dockerized Application using Jenkins + GitHub</h2>
 
         <div class="box">
             <h3>📌 Project Title</h3>
@@ -81,11 +85,11 @@ def home():
 
         <div class="box">
             <h3>🖥 Application Output</h3>
-            <pre>
+            <div class="code-box">
 Hello World
 Changed now
 Test Successful
-            </pre>
+            </div>
         </div>
 
         <div class="box">
@@ -99,10 +103,10 @@ Test Successful
         </div>
 
         <div class="box">
-            <center>
-                <h3>🎯 Final Result</h3>
-                <p><b>Project completed successfully with Continuous Integration workflow.</b></p>
-            </center>
+            <h3>🎯 Final Result</h3>
+            <p>
+                <b>Project completed successfully with Continuous Integration workflow.</b>
+            </p>
         </div>
 
     </body>
