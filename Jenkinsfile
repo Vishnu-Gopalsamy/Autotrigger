@@ -25,13 +25,16 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker image..."
-                sh 'docker build -t $IMAGE_NAME .'
+
+                sh '''
+                docker build -t $IMAGE_NAME .
+                '''
             }
         }
 
         stage('Run Container Test') {
             steps {
-                echo "Running container test..."
+                echo "Stopping old container and starting new one..."
 
                 sh '''
                 docker ps -aq --filter "name=test-container" | xargs -r docker rm -f
@@ -47,7 +50,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                echo "Pushing Docker image..."
+                echo "Pushing Docker image to Docker Hub..."
 
                 withCredentials([usernamePassword(
                     credentialsId: 'docker-hub-cred',
@@ -64,12 +67,12 @@ pipeline {
     }
 
     post {
-        always {
-            echo "Final cleanup..."
+        success {
+            echo "Pipeline completed successfully!"
+        }
 
-            sh '''
-            docker rm -f test-container || true
-            '''
+        failure {
+            echo "Pipeline failed. Please check logs."
         }
     }
 }
