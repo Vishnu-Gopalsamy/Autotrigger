@@ -65,7 +65,7 @@ def home():
             <h3>Application Output</h3>
             <pre>Hello World
 Changed now
-test</pre>
+</pre>
         </div>
 
         <div class="box">
