@@ -17,6 +17,6 @@ st.success("Container Test Passed")
 st.success("Docker Image Pushed to Docker Hub")
 
 st.write("### Application Output")
-st.code("""Hello World\nChanged now\now""")
+st.code("""Hello World\nChanged now\n test""")
 
 st.info("Project completed successfully with Continuous Integration workflow.")
