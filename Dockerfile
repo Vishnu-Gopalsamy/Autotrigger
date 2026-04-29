@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install streamlit
+RUN pip install Flask
 
 EXPOSE 8501
 
