@@ -13,19 +13,27 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                echo "Building Docker image..."
                 sh 'docker build -t $IMAGE_NAME .'
             }
         }
 
         stage('Run Container Test') {
             steps {
+                echo "Running container test..."
+
+                // Remove old container if it exists
                 sh 'docker rm -f test-container || true'
+
+                // Run container and verify application output
                 sh 'docker run --name test-container $IMAGE_NAME'
             }
         }
 
         stage('Push Docker Image') {
             steps {
+                echo "Pushing Docker image to Docker Hub..."
+
                 withCredentials([usernamePassword(
                     credentialsId: 'docker-hub-cred',
                     usernameVariable: 'DOCKER_USER',
@@ -42,7 +50,18 @@ pipeline {
 
     post {
         always {
+            echo "Cleaning up container..."
+
+            // Remove container after execution
             sh 'docker rm -f test-container || true'
+        }
+
+        success {
+            echo "Pipeline completed successfully!"
+        }
+
+        failure {
+            echo "Pipeline failed. Please check logs."
         }
     }
 }
