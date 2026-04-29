@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN pip install streamlit pandas requests
 
+EXPOSE 8501
 
-CMD ["python", "main.py"]
+CMD ["streamlit", "run", "main.py", "--server.address=0.0.0.0"]
