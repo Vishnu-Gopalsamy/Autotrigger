@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install streamlit pandas requests
+RUN pip install streamlit
 
 EXPOSE 8501
 
